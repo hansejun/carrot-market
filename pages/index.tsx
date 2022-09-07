@@ -21,7 +21,7 @@ const Home: NextPage = () => {
           Checkout
         </div>
       </div>
-      <div className="bg-white overflow-hidden rounded-2xl shadow-xl">
+      <div className="bg-white overflow-hidden rounded-2xl shadow-xl group">
         <div className="bg-blue-500 p-6 pb-14">
           <span className="text-white text-xl">Profile</span>
         </div>
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
               <span className="text-sm text-gray-500">Orders</span>
               <span className="font-medium">340</span>
             </div>
-            <div className="h-24 w-24 bg-red-400 rounded-full" />
+            <div className="h-24 w-24 bg-red-200 rounded-full group-hover:bg-red-400 transition" />
             <div className="flex flex-col items-center">
               <span className="text-sm text-gray-500">Spent</span>
               <span className="font-medium">$2,310</span>
@@ -51,15 +51,15 @@ const Home: NextPage = () => {
             <span className="shadow-md p-1 rounded-md">❤️</span>
           </div>
         </div>
-        <div className="bg-zinc-400 h-72 mb-5" />
+        <div className="bg-zinc-400 h-72 mb-5 " />
         <div className="flex flex-col mb-2">
           <span className="font-medium text-xl">Swoon Lounge</span>
           <span className="text-xs text-gray-500 ">Chair</span>
           <div className="flex justify-between items-center mt-2 mb-4">
             <div className="space-x-2">
-              <button className="aspect-square w-5 rounded-full bg-yellow-500"></button>
-              <button className="aspect-square w-5 rounded-full bg-indigo-500"></button>
-              <button className="aspect-square w-5 rounded-full bg-teal-500"></button>
+              <button className="aspect-square w-5 rounded-full bg-yellow-500 focus:ring-2 ring-offset-2 ring-yellow-500 transition"></button>
+              <button className="aspect-square w-5 rounded-full bg-indigo-500 focus:ring-2 ring-offset-2 ring-indigo-500 transition"></button>
+              <button className="aspect-square w-5 rounded-full bg-teal-500 focus:ring-2 ring-offset-2 ring-teal-500 transition"></button>
             </div>
             <div className="space-x-5 flex items-center">
               <button className="rounded-lg  bg-blue-100 aspect-square w-8 font-medium text-xl text-gray-500 hover:bg-blue-200">
@@ -79,7 +79,29 @@ const Home: NextPage = () => {
           </button>
         </div>
       </div>
-      <div className="bg-white rounded-2xl shadow-xl"></div>
+      <div className="bg-white  shadow-xl">
+        <form className="p-2 flex flex-col space-y-2  ">
+          <input
+            type="text"
+            placeholder="User name"
+            className="border p-1 border-gray-400 rounded-md peer"
+            required
+          />
+          <span className="peer-valid:hidden px-4 py-2 bg-white text-red-500 ">
+            This input is invalid
+          </span>
+          <input
+            type="password"
+            placeholder="Password"
+            className="border p-1 border-gray-400 rounded-md peer"
+            required
+          />
+          <span className="peer-valid:hidden px-4 py-2 bg-white text-red-500 ">
+            This input is invalid
+          </span>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     </div>
   );
 };
