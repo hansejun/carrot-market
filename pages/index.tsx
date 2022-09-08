@@ -2,27 +2,29 @@ import type { NextPage } from "next";
 
 const Home: NextPage = () => {
   return (
-    <div className="bg-slate-400 py-20 px-10 grid gap-10 min-h-screen">
-      <div className="bg-white p-10 rounded-3xl shadow-xl">
-        <span className="font-semibold text-2xl">Select Item</span>
+    <div className="bg-slate-400 xl:place-content-center py-20 px-10 grid gap-10 lg:grid-cols-2 xl:grid-cols-3 min-h-screen">
+      <div className="bg-white dark:bg-black  p-10 rounded-3xl shadow-xl">
+        <span className="font-semibold dark:text-white text-2xl">
+          Select Item
+        </span>
         <div className="flex justify-between my-2">
-          <span className="text-gray-500">Grey Chair</span>
-          <span className="font-semibold">$19</span>
+          <span className="text-gray-500 dark:text-gray-100">Grey Chair</span>
+          <span className="font-semibold dark:text-white">$19</span>
         </div>
         <div className="flex justify-between">
-          <span className="text-gray-500">Grey Chair</span>
-          <span className="font-semibold">$19</span>
+          <span className="text-gray-500 dark:text-gray-100">Grey Chair</span>
+          <span className="font-semibold dark:text-white">$19</span>
         </div>
         <div className="mt-2 pt-2 border-t-2 border-dashed flex justify-between">
           <span>Total</span>
           <span className="font-semibold">$10</span>
         </div>
-        <div className="mt-5 bg-blue-500 w-36 mx-auto flex justify-center p-3 rounded-md text-white font-semibold">
+        <div className="mt-5 bg-blue-500 dark:bg-gray-400 dark:hover:bg-white w-36 mx-auto flex justify-center p-3 rounded-md dark:hover:text-black text-white font-semibold">
           Checkout
         </div>
       </div>
       <div className="bg-white overflow-hidden rounded-2xl shadow-xl group">
-        <div className="bg-blue-500 p-6 pb-14">
+        <div className="landscape:bg-blue-500 portrait:bg-red-500 p-6 pb-14 xl:pb-40">
           <span className="text-white text-xl">Profile</span>
         </div>
         <div className="rounded-3xl p-6 relative -top-5 bg-white">
@@ -43,7 +45,7 @@ const Home: NextPage = () => {
           </div>
         </div>
       </div>
-      <div className="bg-white rounded-2xl shadow-xl px-5 py-8">
+      <div className="bg-white rounded-2xl shadow-xl px-5 py-8 lg:col-span-2 xl:col-span-1">
         <div className="flex justify-between  items-center mb-5">
           <span className="text-3xl font-thin">←</span>
           <div className="space-x-3">
@@ -78,29 +80,6 @@ const Home: NextPage = () => {
             Add to cart
           </button>
         </div>
-      </div>
-      <div className="bg-white  shadow-xl">
-        <form className="p-2 flex flex-col space-y-2  ">
-          <input
-            type="text"
-            placeholder="User name"
-            className="border p-1 border-gray-400 rounded-md peer"
-            required
-          />
-          <span className="peer-valid:hidden px-4 py-2 bg-white text-red-500 ">
-            This input is invalid
-          </span>
-          <input
-            type="password"
-            placeholder="Password"
-            className="border p-1 border-gray-400 rounded-md peer"
-            required
-          />
-          <span className="peer-valid:hidden px-4 py-2 bg-white text-red-500 ">
-            This input is invalid
-          </span>
-          <input type="submit" value="Submit" />
-        </form>
       </div>
     </div>
   );
