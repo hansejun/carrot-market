@@ -1,14 +1,13 @@
+import React from "react";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { cls } from "../libs/utils";
-
+import { useRouter } from "next/router";
 interface LayoutProps {
   title?: string;
   canGoBack?: boolean;
   hasTabBar?: boolean;
   children: React.ReactNode;
 }
-
 export default function Layout({
   title,
   canGoBack,
@@ -19,17 +18,11 @@ export default function Layout({
   const onClick = () => {
     router.back();
   };
-
   return (
     <div>
-      <div
-        className={cls(
-          !canGoBack ? "justify-center" : "",
-          "bg-white  w-full max-w-xl text-lg font-medium px-6 py-3 fixed text-gray-800 border-b top-0 flex items-center"
-        )}
-      >
+      <div className="bg-white w-full h-12 max-w-xl justify-center text-lg px-10 font-medium  fixed text-gray-800 border-b top-0  flex items-center">
         {canGoBack ? (
-          <button className="text-sm" onClick={onClick}>
+          <button onClick={onClick} className="absolute left-4">
             <svg
               className="w-6 h-6"
               fill="none"
@@ -46,15 +39,22 @@ export default function Layout({
             </svg>
           </button>
         ) : null}
-        {title ? <span>{title}</span> : null}
+        {title ? (
+          <span className={cls(canGoBack ? "mx-auto" : "", "")}>{title}</span>
+        ) : null}
       </div>
-      <div className={cls("pt-20", hasTabBar ? "pb-[90px]" : "")}>
-        {children}
-      </div>
+      <div className={cls("pt-12", hasTabBar ? "pb-24" : "")}>{children}</div>
       {hasTabBar ? (
-        <nav className="bg-white max-w-xl w-full text-sm text-gray-800 border-t fixed bottom-0 py-5 px-7 flex justify-between items-center ">
+        <nav className="bg-white max-w-xl text-gray-700 border-t fixed bottom-0 w-full px-10 pb-5 pt-3 flex justify-between text-xs">
           <Link href="/">
-            <div className="flex flex-col items-center justify-center space-y-2 ">
+            <a
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -70,10 +70,17 @@ export default function Layout({
                 ></path>
               </svg>
               <span>홈</span>
-            </div>
+            </a>
           </Link>
           <Link href="/community">
-            <div className="flex flex-col items-center  space-y-2">
+            <a
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/community"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -89,10 +96,17 @@ export default function Layout({
                 ></path>
               </svg>
               <span>동네생활</span>
-            </div>
+            </a>
           </Link>
           <Link href="/chats">
-            <div className="flex flex-col items-center space-y-2">
+            <a
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/chats"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -108,10 +122,17 @@ export default function Layout({
                 ></path>
               </svg>
               <span>채팅</span>
-            </div>
+            </a>
           </Link>
           <Link href="/live">
-            <div className="flex flex-col items-center space-y-2">
+            <a
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/live"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -126,11 +147,18 @@ export default function Layout({
                   d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
                 ></path>
               </svg>
-              <span>스트리밍</span>
-            </div>
+              <span>라이브</span>
+            </a>
           </Link>
           <Link href="/profile">
-            <div className="flex flex-col items-center space-y-2">
+            <a
+              className={cls(
+                "flex flex-col items-center space-y-2 ",
+                router.pathname === "/profile"
+                  ? "text-orange-500"
+                  : "hover:text-gray-500 transition-colors"
+              )}
+            >
               <svg
                 className="w-6 h-6"
                 fill="none"
@@ -145,8 +173,8 @@ export default function Layout({
                   d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
                 ></path>
               </svg>
-              <span>프로필</span>
-            </div>
+              <span>나의 캐럿</span>
+            </a>
           </Link>
         </nav>
       ) : null}
