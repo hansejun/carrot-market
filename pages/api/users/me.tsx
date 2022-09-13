@@ -9,7 +9,12 @@ async function handler(
 ): Promise<any> {
   const sessionId = req.session.user?.id;
   const user = await client.user.findUnique({ where: { id: sessionId } });
-  res.json({ ok: true, user });
+  res.json({ ok: true, profile: user });
 }
 
-export default withApiSession(withHandler("GET", handler));
+export default withApiSession(
+  withHandler({
+    methods: ["GET"],
+    handler,
+  })
+);
