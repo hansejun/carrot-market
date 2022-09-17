@@ -8,8 +8,11 @@ async function handler(
   res: NextApiResponse<ResponseType>
 ): Promise<any> {
   const sessionId = req.session.user?.id;
-  const user = await client.user.findUnique({ where: { id: sessionId } });
-  res.json({ ok: true, profile: user });
+  const purchases = await client.purchase.findMany({
+    where: { userId: sessionId },
+    include: { product: { include: { _count: { select: { fav: true } } } } },
+  });
+  res.json({ ok: true, records: purchases });
 }
 
 export default withApiSession(

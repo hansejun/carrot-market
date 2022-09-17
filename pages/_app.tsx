@@ -1,6 +1,8 @@
 import "../styles/globals.css";
 import { SWRConfig } from "swr";
 import type { AppProps } from "next/app";
+import useUser from "@libs/client/useUser";
+import { useRouter } from "next/router";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
