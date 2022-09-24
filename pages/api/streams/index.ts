@@ -8,24 +8,21 @@ async function handler(
   res: NextApiResponse<ResponseType>
 ): Promise<any> {
   if (req.method == "GET") {
-    const products = await client.product.findMany({
-      include: {
-        _count: {
-          select: { fav: true },
-        },
-      },
+    const streams = await client.stream.findMany({
+      take: 10,
     });
-    res.json({ ok: true, products });
+    res.json({ ok: true, streams });
   }
   if (req.method == "POST") {
-    const { name, price, description, photoId } = req.body;
-    const { user } = req.session;
-    const product = await client.product.create({
+    const {
+      session: { user },
+      body: { name, price, description },
+    } = req;
+    const stream = await client.stream.create({
       data: {
         name,
         price: +price,
         description,
-        image: photoId,
         user: {
           connect: {
             id: user?.id,
@@ -33,8 +30,7 @@ async function handler(
         },
       },
     });
-
-    res.json({ ok: true, product });
+    res.json({ ok: true, stream });
   }
 }
 

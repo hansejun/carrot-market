@@ -15,8 +15,9 @@ async function handler(
   if (req.method == "POST") {
     const {
       session: { user },
-      body: { email, phone, name },
+      body: { email, phone, name, avatarId },
     } = req;
+    console.log(avatarId);
     const currentUser = await client.user.findUnique({
       where: {
         id: user?.id,
@@ -76,6 +77,12 @@ async function handler(
         data: { name },
       });
     }
+    if (avatarId) {
+      await client.user.update({
+        where: { id: user?.id },
+        data: { avatar: avatarId },
+      });
+    }
     res.json({ ok: true });
   }
 }
@@ -86,3 +93,5 @@ export default withApiSession(
     handler,
   })
 );
+
+//https://imagedelivery.net/qwLqqDo6NJTZyNO2IfK3hg/<image_id>/<variant_name>

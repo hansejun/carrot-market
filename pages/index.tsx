@@ -5,6 +5,8 @@ import Layout from "@components/layout";
 import useUser from "@libs/client/useUser";
 import useSWR from "swr";
 import { Product } from "@prisma/client";
+import Image from "next/image";
+import pig from "../public/pig.png";
 
 interface ExtendProduct extends Product {
   _count: { fav: number };
@@ -28,6 +30,7 @@ const Home: NextPage = () => {
             title={product.name}
             price={product.price}
             comments={1}
+            photo={product.image}
             hearts={product._count.fav}
           />
         ))}
@@ -49,6 +52,7 @@ const Home: NextPage = () => {
           </svg>
         </FloatingButton>
       </div>
+      <Image src={pig} placeholder="blur" quality={80} alt={"pig"} />
     </Layout>
   );
 };
